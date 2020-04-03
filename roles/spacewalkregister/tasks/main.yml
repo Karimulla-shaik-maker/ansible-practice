@@ -1,0 +1,17 @@
+---
+# set hostanme and register the server with spacewalk and update the server
+  tasks:
+    - name: "set hostname fact"
+      raw: hostnamectl set-hostname {{ host_name }} --static
+      #set_fact: testvar1={{ new_hostname }}
+       #when: "'new' in new_hostname"
+    - name: Register with activationkey and enable extended update support
+      rhn_register:
+        state: present
+        activationkey: 1-222333444
+        channels: {{ channel }},{{ channel1 }},{{ channel2 }},{{ channel3 }} 
+
+     - name: upgrade all packages
+       yum:
+         name: '*'
+         state: latest

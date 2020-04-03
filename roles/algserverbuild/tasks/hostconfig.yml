@@ -1,0 +1,7 @@
+---
+  tasks:
+    - name: "set hostname fact"
+      raw: hostnamectl set-hostname {{ host_name }} --static
+      #set_fact: testvar1={{ new_hostname }}
+       #when: "'new' in new_hostname"
+

@@ -1,0 +1,4 @@
+---
+#restart snmp service
+- name: restart snmp service
+  service: name=snmpd state=restarted

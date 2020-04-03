@@ -1,0 +1,12 @@
+---
+- hosts: testserver
+  #become: true
+   vars:
+    host_name: {{ hostname }}
+    channel:  base
+    channel1: extras
+    channel2: elf
+    channel3: sophos
+    
+   roles:
+      - spacewalkregister

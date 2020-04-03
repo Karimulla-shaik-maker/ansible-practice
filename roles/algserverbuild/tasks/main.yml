@@ -1,0 +1,8 @@
+---
+# tasks file for algserverbuild
+- include: hostconfig.yml
+- include: snmp.yml
+- include: sophos.yml
+- include: LANconfig.yml
+- include: mbs.yml
+- include: ldapclient.yml

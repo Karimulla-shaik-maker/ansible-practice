@@ -1,0 +1,20 @@
+---
+- hosts:
+    - CENTOS7-RED-GOLD
+
+    - name: IP configuration
+      nmcli: 
+         type: ethernet
+         conn_name: enp0s3
+         ifname: enp0s3
+         ipv4: '{{ IPAdd }}'
+         #gw4:  '{{ GTW }}'
+         #dns4: 
+         # - '{{ dnsip1 }}'
+         #  - '{{ dnsip2 }}'
+         state: present 
+         notify: restart network
+
+         handlers: 
+           - name: restart network
+             action: service name=network state=restarted

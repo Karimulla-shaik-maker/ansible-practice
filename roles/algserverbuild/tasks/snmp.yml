@@ -1,0 +1,23 @@
+---
+#install and configure SNMP service for Logic Monitoring
+- name: SNMPD service
+  yum:
+    name: snmpd
+    state: installed
+
+#configuring snmp config
+- name: snmp configuration
+  move: src=/etc/snmp/snmpd.conf dest=/etc/snmp/snmpd.conf-org
+  copy: src=snmpd.conf dest=/etc/snmp/snmpd.conf
+  notify:
+      restart snmp service
+
+#open firewall ports for snmp
+- name: Open port 161 and 162
+  firewalld: 
+       port=161-162/upd 
+       permanent=yes
+       state=enabled 
+       immediate=yes
+  notify:
+      restart firewalld service
